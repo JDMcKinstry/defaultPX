@@ -1,18 +1,16 @@
-
 /*	Element.prototype.defaultPX	*/
 ;(function() {
 	//parseFloat(getComputedStyle(document.body, null).fontSize.replace(/[^\d\.]/g, ''))
 	function defaultPX() {
 		var args = Array.prototype.slice.call(arguments, 0),
-			retObj = false, ele = [], multiplier
-		
+			retObj = false, ele = [], multiplier;
 		for (var x in args) {
 			switch (typeof args[x]) {
 				case 'boolean':
 					if (!retObj) retObj = args[x];
 					break;
 				case 'number':
-					if (void 0 == multiplier) multiplier = arags[x];
+					if (void 0 == multiplier) multiplier = args[x];
 					break;
 				case 'object':
 					if (args[x]['element'] || args[x]['multiplier'] || args[x]['asObject']) {
@@ -119,7 +117,7 @@
 						if (args[x] instanceof jQuery) args[x].each(function(i) { if (this instanceof Element) nArgs.push(this); });
 						else if (args[x] instanceof Element) nArgs.push(args[x]);
 						else if (args[x] instanceof HTMLCollection) nArgs = nArgs.concat(args[x]);
-						else if (/boolean|string/.test(typeof args[x])) nArgs.push(args[x]);
+						else if (/boolean|number/.test(typeof args[x])) nArgs.push(args[x]);
 					}
 					return defaultPX.apply(window, nArgs);
 				}
