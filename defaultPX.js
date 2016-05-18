@@ -48,7 +48,8 @@
 				var e = ele[i];
 				var s = getComputedFontSizePX(e);
 				if (void 0 != multiplier && multiplier != 0) s *= multiplier;
-				ret[getElementIDNameTag(e)] = s;
+				var k = getElementIDNameTag(e) + '['+i+']';
+				ret[k] = s;
 			}
 			return retObj ? ret : objectToArray(ret);
 		}
